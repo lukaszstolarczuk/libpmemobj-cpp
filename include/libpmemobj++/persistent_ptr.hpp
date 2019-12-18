@@ -70,8 +70,8 @@ public:
 	persistent_ptr() = default;
 	persistent_ptr<void> pointer_to(void) = delete;
 	using reference = void;
-	void raw() { return; };
-	void raw_ptr() { return; };
+	const PMEMoid & raw();
+	PMEMoid * raw_ptr();
 	/**
 	 * Explicit void specialization of the converting constructor.
 	 */
@@ -91,8 +91,8 @@ public:
 	persistent_ptr() = default;
 	persistent_ptr<const void> pointer_to(void) = delete;
 	using reference = const void;
-	const void raw() { return; };
-	const void raw_ptr() { return; };
+	const PMEMoid & raw();
+	PMEMoid * raw_ptr();
 	/**
 	 * Explicit const void specialization of the converting constructor.
 	 */
