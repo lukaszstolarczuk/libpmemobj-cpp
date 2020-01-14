@@ -52,11 +52,11 @@ namespace obj
 /**
  * Defrag class.
  *
- * This class implements methods to store pointers from a pool for
- * defragmentation. When defragmentation is called/run, all objects
+ * This class implements methods used to store pointers from a pool
+ * for defragmentation. When defragmentation is called/run, all objects
  * in the vector will be a subject of a defragmentation process.
  *
- * Important note: n instance of this class should collect pointers
+ * Important note: an instance of this class should collect pointers
  * only from one pmem::obj::pool instance.
  *
  * The typical usage example would be:
@@ -97,7 +97,7 @@ public:
 	{
 		if (pmemobj_pool_by_oid(t.raw()) != pop)
 			throw std::runtime_error(
-				"persistent_ptr is not from your chosen pool");
+				"persistent_ptr is not from the chosen pool");
 
 		t.collect_all();
 	}
@@ -114,7 +114,7 @@ public:
 	{
 		if (pmemobj_pool_by_oid(t.raw()) != pop)
 			throw std::runtime_error(
-				"persistent_ptr is not from your chosen pool");
+				"persistent_ptr is not from the chosen pool");
 
 		this->container->emplace_back(ptr);
 		this->add(&ptr);

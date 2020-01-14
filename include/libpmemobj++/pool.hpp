@@ -443,7 +443,7 @@ public:
 	void
 	defrag(const std::vector<persistent_ptr_base *> &vec)
 	{
-		//int pmemobj_defrag(this->pop, PMEMoid **oidv, size_t oidcnt,
+		// int pmemobj_defrag(this->pop, PMEMoid **oidv, size_t oidcnt,
 		//	struct pobj_defrag_result *result);;
 	}
 
