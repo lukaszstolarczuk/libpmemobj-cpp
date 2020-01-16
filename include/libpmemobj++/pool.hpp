@@ -53,6 +53,7 @@
 #include <libpmemobj++/p.hpp>
 #include <libpmemobj++/persistent_ptr_base.hpp>
 #include <libpmemobj++/pexceptions.hpp>
+#include <libpmemobj/atomic_base.h>
 #include <libpmemobj/pool_base.h>
 
 namespace pmem
@@ -440,11 +441,17 @@ public:
 	 * @return struct return value, containing number of total and
 	 * relocated pointers
 	 */
-	void
-	defrag(const std::vector<persistent_ptr_base *> &vec)
+	pobj_defrag_result
+	defrag(persistent_ptr_base **ptrv, size_t oidcnt)
 	{
-		// int pmemobj_defrag(this->pop, PMEMoid **oidv, size_t oidcnt,
-		//	struct pobj_defrag_result *result);;
+		struct pobj_defrag_result result;
+
+		int ret = pmemobj_defrag(this->pop, (PMEMoid **)ptrv, oidcnt,
+					 &result);
+		printf("%uld", ret);
+		// if ret != 0 || *result == nullptr
+
+		return result;
 	}
 
 protected:

@@ -42,6 +42,7 @@
 
 #include <libpmemobj++/persistent_ptr_base.hpp>
 #include <libpmemobj++/pool.hpp>
+// #include <libpmemobj/atomic_base.h>
 #include <libpmemobj/base.h>
 
 namespace pmem
@@ -99,7 +100,9 @@ public:
 			throw std::runtime_error(
 				"persistent_ptr is not from the chosen pool");
 
-		t.collect_all();
+		t.collect_all([](persistent_ptr_base *) {
+			this->container->push_back(ptr);
+		});
 	}
 
 	/**
@@ -116,7 +119,7 @@ public:
 			throw std::runtime_error(
 				"persistent_ptr is not from the chosen pool");
 
-		this->container->emplace_back(ptr);
+		this->container->push_back(ptr);
 		this->add(&ptr);
 	}
 
@@ -129,7 +132,8 @@ public:
 	void
 	run()
 	{
-		this->pop.defrag(this->container);
+		this->pop.defrag(this->container.data(),
+				 this->container.size());
 	}
 
 private:

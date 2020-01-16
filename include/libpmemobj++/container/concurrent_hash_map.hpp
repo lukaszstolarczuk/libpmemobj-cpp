@@ -172,7 +172,7 @@ protected:
 
 template <typename ScopedLockType>
 using scoped_lock_upgrade_to_writer =
-	decltype(std::declval<ScopedLockType>().upgrade_to_writer());
+	decltype(std::declval<ScopedLockType>().  upgrade_to_writer());
 
 template <typename ScopedLockType>
 using scoped_lock_has_upgrade_to_writer =
