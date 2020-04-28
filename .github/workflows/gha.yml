@@ -12,15 +12,15 @@ on: [push, pull_request]
 
 env:
     REPO:           libpmemobj-cpp
-    GITHUB_REPO:    pmem/libpmemobj-cpp
-    DOCKERHUB_REPO: pmem/libpmemobj-cpp
+    GITHUB_REPO:    lukaszstolarczuk/libpmemobj-cpp
+    DOCKERHUB_REPO: lukaszstolarczuk/libpmemobj-cpp
 
 jobs:
   linux:
     name: Linux
     runs-on: ubuntu-latest
     env:
-      DOCKERHUB_USER:          ${{ secrets.DOCKERHUB_USER }}
+      DOCKERHUB_USER:          lukaszstolarczuk
       DOCKERHUB_PASSWORD:      ${{ secrets.DOCKERHUB_PASSWORD }}
       HOST_WORKDIR:   /home/runner/work/libpmemobj-cpp/libpmemobj-cpp
       WORKDIR:        utils/docker
@@ -49,7 +49,7 @@ jobs:
          run: cd $WORKDIR && ${{ matrix.CONFIG }} ./build.sh
 
        - name: Push the image
-         run: cd $WORKDIR && source ./set-vars.sh && ${{ matrix.CONFIG }} /bin/bash -c "if [[ -f XXX_DISABLE_${CI_FILE_PUSH_IMAGE_TO_REPO} ]]; then images/push-image.sh $OS-$OS_VER; fi"
+         run: cd $WORKDIR && source ./set-vars.sh && ${{ matrix.CONFIG }} /bin/bash -c "if [[ -f ${CI_FILE_PUSH_IMAGE_TO_REPO} ]]; then images/push-image.sh $OS-$OS_VER; fi"
 
   windows:
     name: Windows
