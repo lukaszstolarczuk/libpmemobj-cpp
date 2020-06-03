@@ -12,8 +12,8 @@ on: [push, pull_request]
 
 env:
     REPO:           libpmemobj-cpp
-    GITHUB_REPO:    pmem/libpmemobj-cpp
-    DOCKERHUB_REPO: pmem/libpmemobj-cpp
+    GITHUB_REPO:    lukaszstolarczuk/libpmemobj-cpp
+    DOCKERHUB_REPO: lukaszstolarczuk/libpmemobj-cpp
 
 jobs:
   linux:
