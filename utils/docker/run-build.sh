@@ -28,7 +28,10 @@ function upload_codecov() {
 	fi
 
 	# run gcov exe, using their bash (set flag and remove parsed coverage files)
-	bash <(curl -s https://codecov.io/bash) -c -F $1 -X fix -Z -d -v -x "$gcovexe"
+	#bash <(curl -s https://codecov.io/bash) -c -F $1 -X fix -Z -d -v -x "$gcovexe"
+	curl -s https://raw.githubusercontent.com/codecov/codecov-bash/c361fd4aa81551771baabc99b93bbe686c2a3bd8/codecov > .codecov
+	chmod +x .codecov
+	./.codecov -c -F $1 -Z -X gcovout -x "$gcovexe"
 
 	# cleanup files that are not needed anymore
 	find . -name ".coverage" -exec rm {} \;
