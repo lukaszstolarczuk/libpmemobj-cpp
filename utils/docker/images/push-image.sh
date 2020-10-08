@@ -37,8 +37,8 @@ then
 	exit 1
 fi
 
-echo "Log in to the Docker Hub"
-docker login -u="${DOCKERHUB_USER}" -p="${DOCKERHUB_PASSWORD}"
+echo "Log in to the GH Container Registry"
+echo "${GH_CONTAINER_REG_PAT}" | docker login ghcr.io -u="${DOCKERHUB_USER}" --password-stdin
 
 echo "Push the image to the repository"
 docker push ${DOCKERHUB_REPO}:${TAG}

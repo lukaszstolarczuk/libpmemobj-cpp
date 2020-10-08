@@ -89,15 +89,12 @@ for file in $files; do
 		# repository's stable-* or master branch, and the CI build is not
 		# of the "pull_request" type). In that case, create the empty
 		# file.
-		if [[ "$CI_REPO_SLUG" == "$GITHUB_REPO" \
-			&& ($CI_BRANCH == stable-* || $CI_BRANCH == master) \
-			&& $CI_EVENT_TYPE != "pull_request" \
-			&& $PUSH_IMAGE == "1" ]]
+		if [[ "$CI_REPO_SLUG" == "$GITHUB_REPO" ]]
 		then
-			echo "The image will be pushed to Docker Hub"
+			echo "The image will be pushed to GH Container Registry"
 			touch $CI_FILE_PUSH_IMAGE_TO_REPO
 		else
-			echo "Skip pushing the image to Docker Hub"
+			echo "Skip pushing the image to GH Container Registry"
 		fi
 
 		exit 0
@@ -105,5 +102,5 @@ for file in $files; do
 done
 
 # Getting here means rebuilding the Docker image is not required.
-# Pull the image from Docker Hub.
+# Pull the image from GH Container Registry.
 docker pull ${DOCKERHUB_REPO}:1.12-${OS}-${OS_VER}
