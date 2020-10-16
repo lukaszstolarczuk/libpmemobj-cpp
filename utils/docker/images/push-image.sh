@@ -28,7 +28,7 @@ if [[ -z "${CONTAINER_REG}" ]]; then
 fi
 
 if [[ -z "${CONTAINER_REG_USER}" || -z "${CONTAINER_REG_PASS}" ]]; then
-	echo "ERROR: variables CONTAINER_REG_USER and CONTAINER_REG_PASS " \
+	echo "ERROR: variables CONTAINER_REG_USER=\"${CONTAINER_REG_USER}\" and CONTAINER_REG_PASS=\"${CONTAINER_REG_PASS}\" " \
 		"have to be set properly to allow login to the Container Registry."
 	exit 1
 fi

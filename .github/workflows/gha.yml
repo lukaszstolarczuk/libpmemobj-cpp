@@ -12,8 +12,8 @@ jobs:
     env:
       CONTAINER_REG:  ghcr.io/pmem/libpmemobj-cpp
       # use org's Private Access Token to log in to GitHub Container Registry
-      CONTAINER_REG_USER:   ${{ secrets.GH_CR_USER }}
-      CONTAINER_REG_PASS:   ${{ secrets.GH_CR_PAT }}
+      CONTAINER_REG_USER:   pmem-bott
+      CONTAINER_REG_PASS:   pass
       HOST_WORKDIR:   /home/runner/work/libpmemobj-cpp/libpmemobj-cpp
       WORKDIR:        utils/docker
     strategy:
