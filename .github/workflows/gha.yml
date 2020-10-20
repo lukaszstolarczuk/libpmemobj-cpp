@@ -42,8 +42,8 @@ jobs:
          with:
             fetch-depth: 50
 
-       - name: Pull or rebuild the image
-         run: cd $WORKDIR && ${{ matrix.CONFIG }} ./pull-or-rebuild-image.sh
+       - name: Build the image
+         run: cd $WORKDIR/images && ${{ matrix.CONFIG }} ./build-image.sh ${{OS}}-${{OS_VER}}
 
        - name: Run the build
          run: cd $WORKDIR && ${{ matrix.CONFIG }} ./build.sh
