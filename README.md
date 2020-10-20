@@ -14,9 +14,9 @@ More implementation details can be found in [include/libpmemobj++/README.md](inc
 Latest releases can be found on the ["releases" tab](https://github.com/pmem/libpmemobj-cpp/releases).
 Up-to-date support/maintenance status of branches/releases is available on [pmem.io](https://pmem.io/libpmemobj-cpp).
 
-# How to build #
+# How to build
 
-## Requirements: ##
+## Requirements:
 - cmake >= 3.3
 - libpmemobj-dev(el) >= 1.8 (https://pmem.io/pmdk/)
 - compiler with C++11 support:
@@ -27,7 +27,7 @@ Up-to-date support/maintenance status of branches/releases is available on [pmem
 	- clang format 9.0
 	- perl
 
-### Additional requirements: ###
+### Additional requirements:
 **radix_tree**: on Windows, Visual Studio in version at least 2017 is needed. Testing and/or installing radix_tree can be disable via CMake options.
 
 ## On Linux ##
@@ -40,7 +40,7 @@ $ make
 $ make install
 ```
 
-#### When developing: ####
+#### When developing:
 ```sh
 $ ...
 $ cmake .. -DCMAKE_BUILD_TYPE=Debug -DDEVELOPER_MODE=1 -DCHECK_CPP_STYLE=1
@@ -48,7 +48,7 @@ $ ...
 $ ctest --output-on-failure
 ```
 
-#### To build packages ####
+#### To build packages
 ```sh
 ...
 cmake .. -DCPACK_GENERATOR="$GEN" -DCMAKE_INSTALL_PREFIX=/usr
@@ -59,7 +59,7 @@ $GEN is type of package generator and can be RPM or DEB
 
 CMAKE_INSTALL_PREFIX must be set to a destination were packages will be installed
 
-#### To use with Valgrind ####
+#### To use with Valgrind
 
 In order to build your application with libpmemobj-cpp and
 [pmemcheck](https://github.com/pmem/valgrind) / memcheck / helgrind / drd,
@@ -73,9 +73,9 @@ Valgrind instrumentation must be enabled during compilation by adding flags:
 If there are no memcheck / helgrind / drd / pmemcheck headers installed on your
 system, build will fail.
 
-## On Windows ##
+## On Windows
 
-#### Install libpmemobj via vcpkg ####
+#### Install libpmemobj via vcpkg
 ```sh
 vcpkg install pmdk:x64-windows
 vcpkg integrate install
