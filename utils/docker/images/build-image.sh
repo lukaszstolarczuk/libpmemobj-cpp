@@ -16,7 +16,7 @@ set -e
 function usage {
 	echo
 	echo "Usage:"
-	echo "    build-image.sh <OS-VER>"
+	echo "   build-image.sh <OS-VER>"
 	echo "where <OS-VER>, for example, can be 'fedora-31', provided " \
 		"a Dockerfile named 'Dockerfile.fedora-31' exists in the " \
 		"current directory."
