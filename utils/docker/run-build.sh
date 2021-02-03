@@ -51,6 +51,9 @@ function tests_clang_debug_cpp17_no_valgrind() {
 		-DTESTS_COMPATIBILITY=1
 
 	make -j$(nproc)
+	echo "DEBUG DEBUG DEBUG !!!"
+	ctest --verbose --output-on-failure -R "ex-" --timeout ${TEST_TIMEOUT}
+	echo "DEBUG DEBUG DEBUG !!!"
 	ctest --output-on-failure -E "_pmreorder" --timeout ${TEST_TIMEOUT}
 	if [ "${COVERAGE}" == "1" ]; then
 		upload_codecov tests_clang_debug_cpp17
@@ -85,6 +88,9 @@ function tests_clang_release_cpp11_no_valgrind() {
 		-DTESTS_COMPATIBILITY=1
 
 	make -j$(nproc)
+	echo "DEBUG DEBUG DEBUG !!!"
+	ctest --verbose --output-on-failure -R "ex-" --timeout ${TEST_TIMEOUT}
+	echo "DEBUG DEBUG DEBUG !!!"
 	ctest --output-on-failure -E "_pmreorder" --timeout ${TEST_TIMEOUT}
 	if [ "${COVERAGE}" == "1" ]; then
 		upload_codecov tests_clang_release_cpp11
