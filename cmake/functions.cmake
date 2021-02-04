@@ -203,6 +203,8 @@ function(set_source_ver SRCVERSION)
 				PARENT_SCOPE)
 			return()
 		endif()
+
+		message(WARNING "blarghaaa")
 	else()
 		execute_process(COMMAND git log -1 --format=%h
 			OUTPUT_VARIABLE GIT_COMMIT
