@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright 2016-2020, Intel Corporation
+# Copyright 2016-2021, Intel Corporation
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -85,6 +85,18 @@ if [[ "${1}" == "rebuild" ]]; then
 	pushd ${images_dir_name}
 	./build-image.sh ${DOCKERHUB_REPO} ${OS}-${OS_VER}
 	popd
+
+	if [[ $TRAVIS_REPO_SLUG == "${GITHUB_REPO}" \
+		&& $TRAVIS_BRANCH == "master" \
+		&& $TRAVIS_EVENT_TYPE != "pull_request"
+		&& $PUSH_IMAGE == "1" ]]
+	then
+		echo "The image will be pushed to Docker Hub"
+		touch push_image_to_repo_flag
+	else
+		echo "Skip pushing the image to Docker Hub"
+	fi
+
 	exit 0
 fi
 
