@@ -16,9 +16,9 @@ fi
 
 PACKAGE_MANAGER=${1}
 
-# master: Merge pull request #5150 from kilobyte/rpm-no-lto, 16.02.2021
+# master: Merge pull request #5201 from wlemkows/fix-codcov, 06.04.2021
 # contains fix for packaging
-PMDK_VERSION="7f88d9fae088b81936d2f6d5235169e90e7478c7"
+PMDK_VERSION="a80735f0916d7db5ec41cfc6562ac0fa7acfd2b9"
 
 git clone https://github.com/pmem/pmdk
 cd pmdk
