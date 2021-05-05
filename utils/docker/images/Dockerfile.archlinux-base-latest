@@ -7,7 +7,7 @@
 #
 
 # Pull base image
-FROM registry.hub.docker.com/archlinux/base:latest
+FROM registry.hub.docker.com/library/archlinux:base
 MAINTAINER igor.chorazewicz@intel.com
 
 # Set required environment variables
@@ -75,7 +75,7 @@ ARG MISC_DEPS="\
 	sudo \
 	whois"
 
-# Update the Apt cache and install basic tools
+# Update the pacman cache and install basic tools
 RUN pacman -Syu --noconfirm \
  && pacman -S --noconfirm \
 	${BASE_DEPS} \

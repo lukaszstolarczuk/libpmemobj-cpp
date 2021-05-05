@@ -25,7 +25,8 @@ ARG SKIP_SCRIPTS_DOWNLOAD
 ARG BASE_DEPS="\
 	cmake \
 	build-essential \
-	git"
+	git \
+	software-properties-common"
 
 # Dependencies for compiling libpmemobj-cpp project
 ARG LIBPMEMOBJ_CPP_DEPS="\
@@ -88,7 +89,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Update the apt cache and install basic tools
 RUN apt-get update \
- && apt-get install -y software-properties-common \
+ && apt-get install -y \
 	${BASE_DEPS} \
 	${LIBPMEMOBJ_CPP_DEPS} \
 	${PMDK_DEPS} \
