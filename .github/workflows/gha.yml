@@ -112,32 +112,30 @@ jobs:
       - name: Update PATH
         run: echo "${env:MSBUILD}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
-      - name: Cache vcpkg packages
-        uses: actions/cache@v1
-        id: cache-vcpkg-packages
-        with:
-          path: C:/vcpkg/packages
-          key:  vcpkg-packages-45e5a67
+      - name: install custom vcpkg
+        run: |
+          git clone 'https://github.com/Microsoft/vcpkg.git' 'C:\vcpkg2'
+          cd 'C:\vcpkg2'
+          git checkout 6a274ad4b370b3b729d3af6227f57257ec708b43
+          Invoke-Expression "C:\vcpkg2\bootstrap-vcpkg.bat"
+          Invoke-Expression "C:\vcpkg2\vcpkg.exe integrate install"
 
-      - name: Cache vcpkg installed
-        uses: actions/cache@v1
-        id: cache-vcpkg-installed
-        with:
-          path: C:/vcpkg/installed
-          key:  vcpkg-installed-45e5a67
+      - name: Install PMDK
+        run: |
+          C:\vcpkg2\vcpkg.exe install pmdk:x64-windows
+          C:\vcpkg2\vcpkg.exe install sfml:x64-windows
+          C:\vcpkg2\vcpkg.exe install tbb:x64-windows
+          C:\vcpkg2\vcpkg.exe update
+          C:\vcpkg2\vcpkg.exe upgrade pmdk:x64-windows --no-dry-run
+
+      - name: Print Error
+        if: ${{ always() }}
+        run: Get-Content -Path C:\vcpkg2\buildtrees\pmdk\build-x64-windows-rel-out.log
 
       - name: Clone the git repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Install PMDK
-        run: |
-          vcpkg install pmdk:x64-windows
-          vcpkg install sfml:x64-windows
-          vcpkg install tbb:x64-windows
-          vcpkg update
-          vcpkg upgrade pmdk:x64-windows --no-dry-run
 
       - name: vcpkg integrate install
         run: vcpkg integrate install
