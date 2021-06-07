@@ -122,6 +122,8 @@ endif()
 if(WIN32)
 	# Required for MSVC to correctly define __cplusplus
 	add_flag("/Zc:__cplusplus")
+	# Compile sources using max. available cores
+	add_flag("/MP")
 endif()
 
 if(NOT WIN32)
