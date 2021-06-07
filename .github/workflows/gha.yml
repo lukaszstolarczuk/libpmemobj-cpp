@@ -16,6 +16,7 @@ env:
 
 jobs:
   linux:
+    if: false
     name: Linux
     runs-on: ubuntu-latest
     env:
@@ -90,20 +91,17 @@ jobs:
 
   windows:
     name: Windows
-    runs-on: windows-latest
-
-    # XXX: enable once https://github.com/actions/virtual-environments/issues/3475 is solved
-    if: false
-
+    # XXX: come back to Win 2019 once https://github.com/actions/virtual-environments/issues/3475 is solved
+    runs-on: windows-2016
     env:
       platform: x64
       VCPKG_DEFAULT_TRIPLET: x64-windows
-      GENERATOR: "Visual Studio 16 2019"
+      GENERATOR: "Visual Studio 15 2017"
       ARCH:      "x64"
       PMDK_VERSION: "1.9"
       CMAKE_TOOLCHAIN_FILE: "C:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
       CMAKE_INSTALL_PREFIX: "C:\\install\\libpmemobj-cpp"
-      MSBUILD:  "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin"
+      MSBUILD:  "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin"
     strategy:
       matrix:
         BUILD_TYPE:   [Debug, Release]
