@@ -16,9 +16,8 @@ fi
 
 PACKAGE_MANAGER=${1}
 
-# master: Merge pull request #5150 from kilobyte/rpm-no-lto, 16.02.2021
-# contains fix for packaging
-PMDK_VERSION="7f88d9fae088b81936d2f6d5235169e90e7478c7"
+# master: 1.11.0-rc2, 25.06.2021
+PMDK_VERSION="7333d4d4730b5624f8ba3981c2ae730a6293f63d"
 
 git clone https://github.com/pmem/pmdk
 cd pmdk
