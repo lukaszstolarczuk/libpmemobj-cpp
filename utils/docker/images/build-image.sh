@@ -49,6 +49,10 @@ function usage {
 		"current directory."
 }
 
+function sudo_password() {
+	echo $USERPASS | sudo -Sk $*
+}
+
 echo "Check if the first and second argument are nonempty: \"${1}\", \"${2}\""
 if [[ -z "${1}" || -z "${2}" ]]; then
 	usage
@@ -62,8 +66,11 @@ if [[ ! -f "Dockerfile.$2" ]]; then
 	exit 1
 fi
 
+echo "Limit down download rate"
+sudo_password dockerd --max-concurrent-downloads 2
+
 echo "Build a Docker image tagged with ${DOCKERHUB_REPO}:1.6-${1}-${2}"
-docker build -t $1:1.6-$2 \
+docker build --log-level=debug -t $1:1.6-$2 \
 	--build-arg http_proxy=$http_proxy \
 	--build-arg https_proxy=$https_proxy \
 	-f Dockerfile.$2 .
